@@ -113,6 +113,7 @@ func icmpEcho(addr, msg string) (r []byte, err error) {
 		return
 	}
 
+	// receives Etho response message
 	switch rm.Body.(type) {
 	case *icmp.Echo:
 		body, _ := rm.Body.(*icmp.Echo)
@@ -122,15 +123,5 @@ func icmpEcho(addr, msg string) (r []byte, err error) {
 		err = fmt.Errorf("not Echo message")
 	}
 
-	/*
-			var body *icmp.Echo
-			var ok bool
-			body, ok = rm.Body.(*icmp.Echo)
-		fmt.Println(ok, body.Data)
-	*/
-
-	//bb, err = rm.Body.Marshal(1 /*ICMP*/)
-	//fmt.Println(bb)
-	//fmt.Println(rm.Body.Len(1))
 	return
 }
